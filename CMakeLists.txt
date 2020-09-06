@@ -30,6 +30,8 @@ CPMAddPackage(
   VERSION 1.3
 )
 
+include(cmake/projectDependencies.cmake)
+
 # ---- Add source files ----
 
 # Note: globbing sources is considered bad practice as CMake's generators may not detect new files
