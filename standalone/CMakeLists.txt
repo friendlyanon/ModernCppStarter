@@ -5,6 +5,7 @@ project(GreeterStandalone LANGUAGES CXX)
 # --- Import tools ----
 
 include(../cmake/tools.cmake)
+include(../cmake/warnings.cmake)
 
 # ---- Dependencies ----
 
@@ -28,3 +29,5 @@ add_executable(GreeterStandalone ${sources})
 set_target_properties(GreeterStandalone PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "Greeter")
 
 target_link_libraries(GreeterStandalone Greeter cxxopts)
+
+set_project_warnings(GreeterStandalone)
