@@ -15,9 +15,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 function(set_project_options TARGET)
-  target_compile_features("${TARGET}" PUBLIC cxx_std_20)
-
-  set_target_properties("${TARGET}" PROPERTIES CXX_EXTENSIONS OFF)
+  set_target_properties("${TARGET}" PROPERTIES CXX_STANDARD 17 CXX_EXTENSIONS OFF)
 
   if(ENABLE_BUILD_WITH_TIME_TRACE)
     add_compile_definitions("${TARGET}" INTERFACE -ftime-trace)
