@@ -1,3 +1,5 @@
 /build*
 /.vscode
+/.cpm-cache
+/all/cmake-build-*
 .DS_Store
