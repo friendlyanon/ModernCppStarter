@@ -31,20 +31,3 @@ set_target_properties(GreeterStandalone PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "
 target_link_libraries(GreeterStandalone Greeter cxxopts fmt)
 
 set_project_warnings(GreeterStandalone)
-
-if(USE_STATIC_LINKAGE)
-  if(MSVC)
-    option(PROJECT_USES_MFC "Does the project use MFC?" OFF)
-    if(PROJECT_USES_MFC)
-      set(CMAKE_MFC_FLAG 1)
-    endif()
-
-    set(CMAKE_FIND_LIBRARY_SUFFIXES ".lib")
-
-    target_compile_options(GreeterStandalone PUBLIC /MT)
-
-    target_link_options(GreeterStandalone PUBLIC /INCREMENTAL:NO /NODEFAULTLIB:MSVCRT)
-  else()
-    target_link_libraries(GreeterStandalone -static)
-  endif()
-endif()

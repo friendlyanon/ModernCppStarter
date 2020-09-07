@@ -13,7 +13,6 @@ configure() {
   cmake -Hstandalone -B $TARGET -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
     -DUSE_CCACHE=ON \
-    -DUSE_STATIC_LINKAGE=ON \
     -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
     -DCPM_SOURCE_CACHE="$(pwd)/.cpm-cache"
 }
