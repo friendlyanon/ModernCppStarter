@@ -5,6 +5,12 @@ if [ "$#" -ne 1 ] || ! [ -f "$1" ]; then
   exit 1
 fi
 
-TARGET="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+EXE="$(basename "$1")"
+TARGET="$(cd "$(dirname "$1")"; pwd)/$EXE"
 
-strip -v -s "$TARGET"
+sizeof() {
+  du --apparent-size --block-size=1 "$1" | cut -f1
+}
+
+BEFORE="$(sizeof "$TARGET")"
+strip -s "$TARGET" && echo "$EXE stripped: $BEFORE -> $(sizeof "$TARGET")"
