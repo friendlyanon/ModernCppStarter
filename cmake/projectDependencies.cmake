@@ -16,7 +16,11 @@ if(fmt_ADDED)
 
   target_include_directories(fmt PUBLIC "${fmt_SOURCE_DIR}/include")
 
-  set_target_properties(fmt PROPERTIES CXX_STANDARD 17 CXX_EXTENSIONS OFF)
+  # {fmt} needs C++ 11 at least to compile and use as a library
+  target_compile_features(fmt PUBLIC cxx_std_11)
+
+  # Don't want {fmt} source files to compile with GNU extensions
+  set_target_properties(fmt PROPERTIES CXX_EXTENSIONS OFF)
 else()
-  message(FATAL_ERROR "-- Failed to add the fmt library")
+  message(FATAL_ERROR "Failed to add the fmt library")
 endif()
