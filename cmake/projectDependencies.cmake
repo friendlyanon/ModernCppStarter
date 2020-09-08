@@ -24,3 +24,24 @@ if(fmt_ADDED)
 else()
   message(FATAL_ERROR "Failed to add the fmt library")
 endif()
+
+# gsl
+
+CPMAddPackage(
+  NAME GSL
+  GITHUB_REPOSITORY microsoft/GSL
+  VERSION 3.1.0
+  # GSL leaves some junk with set()s
+  DOWNLOAD_ONLY YES
+)
+
+if(GSL_ADDED)
+  add_library(GSL INTERFACE)
+
+  target_include_directories(GSL INTERFACE "${GSL_SOURCE_DIR}/include")
+
+  # GSL uses C++ 14 by default in its CMakeLists file, so we propagate that requirement
+  target_compile_features(GSL INTERFACE cxx_std_14)
+else()
+  message(FATAL_ERROR "Failed to add the GSL library")
+endif()

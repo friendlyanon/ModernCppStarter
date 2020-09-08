@@ -28,6 +28,6 @@ add_executable(GreeterStandalone ${sources})
 
 set_target_properties(GreeterStandalone PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "Greeter")
 
-target_link_libraries(GreeterStandalone Greeter cxxopts fmt)
+target_link_libraries(GreeterStandalone Greeter cxxopts fmt GSL)
 
 set_project_warnings(GreeterStandalone)
