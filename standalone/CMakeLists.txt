@@ -47,4 +47,4 @@ set_target_properties(
 
 target_link_libraries(GreeterStandalone Greeter cxxopts fmt GSL)
 
-set_project_warnings(GreeterStandalone)
+set_target_warnings(GreeterStandalone)
