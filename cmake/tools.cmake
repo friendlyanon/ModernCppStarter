@@ -6,7 +6,7 @@ if(NOT PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   return()
 endif()
 
-include(${CMAKE_CURRENT_LIST_DIR}/CPM.cmake)
+include("${CMAKE_CURRENT_LIST_DIR}/CPM.cmake")
 
 # enables sanitizers support using the the `USE_SANITIZER` flag available values are: Address,
 # Memory, MemoryWithOrigins, Undefined, Thread, Leak, 'Address;Undefined'
@@ -18,7 +18,7 @@ if(USE_SANITIZER OR USE_STATIC_ANALYZER)
   )
 
   if(USE_SANITIZER)
-    include(${StableCoder-cmake-scripts_SOURCE_DIR}/sanitizers.cmake)
+    include("${StableCoder-cmake-scripts_SOURCE_DIR}/sanitizers.cmake")
   endif()
 
   if(USE_STATIC_ANALYZER)
@@ -56,7 +56,7 @@ if(USE_SANITIZER OR USE_STATIC_ANALYZER)
       )
     endif()
 
-    include(${StableCoder-cmake-scripts_SOURCE_DIR}/tools.cmake)
+    include("${StableCoder-cmake-scripts_SOURCE_DIR}/tools.cmake")
 
     clang_tidy(${CLANG_TIDY_ARGS})
     include_what_you_use(${IWYU_ARGS})

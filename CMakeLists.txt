@@ -42,18 +42,18 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 # ---- Create library ----
 
 # Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
-# target: add_library(${PROJECT_NAME} INTERFACE) target_compile_features(${PROJECT_NAME} INTERFACE
-# cxx_std_17)
+# target: add_library("${PROJECT_NAME}" INTERFACE) target_compile_features("${PROJECT_NAME}"
+# INTERFACE cxx_std_17)
 
-add_library(${PROJECT_NAME} ${headers} ${sources})
+add_library("${PROJECT_NAME}" ${headers} ${sources})
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_compile_features("${PROJECT_NAME}" PUBLIC cxx_std_17)
 
-# Link dependencies (if required) target_link_libraries(${PROJECT_NAME} PUBLIC cxxopts)
+# Link dependencies (if required) target_link_libraries("${PROJECT_NAME}" PUBLIC cxxopts)
 
 target_include_directories(
-  ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-                         $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
+  "${PROJECT_NAME}" PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
+                           "$<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>"
 )
 
 # ---- Create an installable target ----
@@ -61,14 +61,14 @@ target_include_directories(
 
 # the location where the project's version header will be placed should match the project's regular
 # header paths
-string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
+string(TOLOWER "${PROJECT_NAME}/version.h" VERSION_HEADER_LOCATION)
 
 packageProject(
-  NAME ${PROJECT_NAME}
-  VERSION ${PROJECT_VERSION}
-  BINARY_DIR ${PROJECT_BINARY_DIR}
-  INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
-  INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
+  NAME "${PROJECT_NAME}"
+  VERSION "${PROJECT_VERSION}"
+  BINARY_DIR "${PROJECT_BINARY_DIR}"
+  INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include"
+  INCLUDE_DESTINATION "include/${PROJECT_NAME}-${PROJECT_VERSION}"
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   DEPENDENCIES "fmt"
 )

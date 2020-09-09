@@ -24,7 +24,7 @@ CPMAddPackage(
 if(TEST_INSTALLED_VERSION)
   find_package(Greeter REQUIRED)
 else()
-  CPMAddPackage(NAME Greeter SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+  CPMAddPackage(NAME Greeter SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/..")
 endif()
 
 CPMAddPackage(
@@ -37,7 +37,7 @@ CPMAddPackage(
 
 # ---- Create binary ----
 
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
+file(GLOB sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
 add_executable(GreeterTests ${sources})
 target_link_libraries(GreeterTests doctest Greeter)
 
@@ -60,7 +60,7 @@ enable_testing()
 # Note: doctest and similar testing frameworks can automatically configure CMake tests For other
 # testing frameworks add the tests target instead: ADD_TEST(GreeterTests GreeterTests)
 
-include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
+include("${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake")
 doctest_discover_tests(GreeterTests)
 
 # ---- code coverage ----
