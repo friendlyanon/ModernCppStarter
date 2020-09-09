@@ -38,7 +38,12 @@ file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 
 add_executable(GreeterStandalone ${sources})
 
-set_target_properties(GreeterStandalone PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "Greeter")
+set_target_properties(
+  GreeterStandalone
+  PROPERTIES CXX_STANDARD 17
+             CXX_EXTENSIONS OFF
+             OUTPUT_NAME "Greeter"
+)
 
 target_link_libraries(GreeterStandalone Greeter cxxopts fmt GSL)
 
