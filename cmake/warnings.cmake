@@ -76,7 +76,3 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 else()
   message(AUTHOR_WARNING "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
 endif()
-
-function(set_target_warnings TARGET)
-  target_compile_options("${TARGET}" INTERFACE ${PROJECT_WARNINGS})
-endfunction()

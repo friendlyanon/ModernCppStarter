@@ -5,6 +5,7 @@ project(GreeterStandalone LANGUAGES CXX)
 # ---- Import tools ----
 
 include(../cmake/tools.cmake)
+# Import PROJECT_WARNINGS list variable
 include(../cmake/warnings.cmake)
 
 # ---- Build type ----
@@ -47,4 +48,4 @@ set_target_properties(
 
 target_link_libraries(GreeterStandalone Greeter cxxopts fmt GSL)
 
-set_target_warnings(GreeterStandalone)
+target_compile_options(GreeterStandalone PRIVATE ${PROJECT_WARNINGS})
