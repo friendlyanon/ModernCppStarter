@@ -11,7 +11,7 @@ CPMAddPackage(
 )
 
 if(fmt_ADDED)
-  file(GLOB fmt_sources "${fmt_SOURCE_DIR}/src/*.cc")
+  file(GLOB fmt_sources CONFIGURE_DEPENDS "${fmt_SOURCE_DIR}/src/*.cc")
   add_library(fmt STATIC ${fmt_sources})
 
   target_include_directories(fmt PUBLIC "$<BUILD_INTERFACE:${fmt_SOURCE_DIR}/include>")
