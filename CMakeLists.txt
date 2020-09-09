@@ -47,9 +47,7 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 
 add_library(${PROJECT_NAME} ${headers} ${sources})
 
-include(cmake/options.cmake)
-
-set_project_options(${PROJECT_NAME})
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
 # Link dependencies (if required) target_link_libraries(${PROJECT_NAME} PUBLIC cxxopts)
 
