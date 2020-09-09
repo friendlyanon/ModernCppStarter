@@ -28,8 +28,21 @@ CPMAddPackage(
   NAME cxxopts
   GITHUB_REPOSITORY jarro2783/cxxopts
   VERSION 2.2.0
-  OPTIONS "CXXOPTS_BUILD_EXAMPLES Off" "CXXOPTS_BUILD_TESTS Off"
+  # Breaks with warnings on otherwise
+  DOWNLOAD_ONLY YES
 )
+
+if(cxxopts_ADDED)
+  add_library(cxxopts INTERFACE)
+
+  target_include_directories(
+    cxxopts SYSTEM INTERFACE "$<BUILD_INTERFACE:${cxxopts_SOURCE_DIR}/include>"
+  )
+
+  target_compile_features(cxxopts INTERFACE cxx_std_11)
+else()
+  message(FATAL_ERROR "Failed to add the cxxopts library")
+endif()
 
 CPMAddPackage(NAME Greeter SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/..")
 
