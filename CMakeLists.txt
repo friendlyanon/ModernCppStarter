@@ -42,20 +42,20 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 # ---- Create library ----
 
 # Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
-# target: add_library(Greeter INTERFACE) set_target_properties(Greeter PROPERTIES
-# INTERFACE_COMPILE_FEATURES cxx_std_17)
+# target: add_library(${PROJECT_NAME} INTERFACE) target_compile_features(${PROJECT_NAME} INTERFACE
+# cxx_std_17)
 
-add_library(Greeter ${headers} ${sources})
+add_library(${PROJECT_NAME} ${headers} ${sources})
 
 include(cmake/options.cmake)
 
-set_project_options(Greeter)
+set_project_options(${PROJECT_NAME})
 
-# Link dependencies (if required) target_link_libraries(Greeter PUBLIC cxxopts)
+# Link dependencies (if required) target_link_libraries(${PROJECT_NAME} PUBLIC cxxopts)
 
 target_include_directories(
-  Greeter PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-                 $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
+  ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+                         $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
 # ---- Create an installable target ----
