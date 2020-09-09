@@ -65,6 +65,8 @@ set(GCC_WARNINGS
     -Wuseless-cast # warn if you perform a cast to the same type
 )
 
+mark_as_advanced(MSVC_WARNINGS CLANG_WARNINGS GCC_WARNINGS)
+
 if(MSVC)
   set(PROJECT_WARNINGS ${MSVC_WARNINGS})
 elseif(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
