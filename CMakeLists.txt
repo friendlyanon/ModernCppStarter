@@ -51,9 +51,17 @@ target_compile_features("${PROJECT_NAME}" PUBLIC cxx_std_17)
 
 # Link dependencies (if required) target_link_libraries("${PROJECT_NAME}" PUBLIC cxxopts)
 
+# By default we want to use SYSTEM, so dependant projects don't get warnings from these includes
+if(NOT GREETER_INCLUDE_TYPE)
+  set(GREETER_INCLUDE_TYPE
+      "SYSTEM;PUBLIC"
+      CACHE INTERNAL ""
+  )
+endif()
+
 target_include_directories(
-  "${PROJECT_NAME}" PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
-                           "$<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>"
+  "${PROJECT_NAME}" ${GREETER_INCLUDE_TYPE} "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>"
 )
 
 # ---- Create an installable target ----

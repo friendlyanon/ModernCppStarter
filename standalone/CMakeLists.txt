@@ -44,7 +44,11 @@ else()
   message(FATAL_ERROR "Failed to add the cxxopts library")
 endif()
 
-CPMAddPackage(NAME Greeter SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/..")
+CPMAddPackage(
+  NAME Greeter
+  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/.."
+  OPTIONS "GREETER_INCLUDE_TYPE PUBLIC"
+)
 
 # ---- Create standalone executable ----
 

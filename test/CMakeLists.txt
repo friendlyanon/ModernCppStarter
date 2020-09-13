@@ -24,7 +24,11 @@ CPMAddPackage(
 if(TEST_INSTALLED_VERSION)
   find_package(Greeter REQUIRED)
 else()
-  CPMAddPackage(NAME Greeter SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/..")
+  CPMAddPackage(
+    NAME Greeter
+    SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/.."
+    OPTIONS "GREETER_INCLUDE_TYPE PUBLIC"
+  )
 endif()
 
 CPMAddPackage(
