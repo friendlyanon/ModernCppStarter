@@ -49,7 +49,7 @@ add_library("${PROJECT_NAME}" ${headers} ${sources})
 
 target_compile_features("${PROJECT_NAME}" PUBLIC cxx_std_17)
 
-# Link dependencies (if required) target_link_libraries("${PROJECT_NAME}" PUBLIC cxxopts)
+target_link_libraries("${PROJECT_NAME}" PUBLIC fmt)
 
 # By default we want to use SYSTEM, so dependant projects don't get warnings from these includes
 if(NOT GREETER_INCLUDE_TYPE)
@@ -59,9 +59,10 @@ if(NOT GREETER_INCLUDE_TYPE)
   )
 endif()
 
-target_include_directories(
-  "${PROJECT_NAME}" ${GREETER_INCLUDE_TYPE} "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>"
+target_include_directories("${PROJECT_NAME}"
+  ${GREETER_INCLUDE_TYPE}
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>"
 )
 
 # ---- Create an installable target ----

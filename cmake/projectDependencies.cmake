@@ -23,6 +23,15 @@ target_compile_features(fmt PUBLIC cxx_std_11)
 # Don't want {fmt} source files to compile with GNU extensions
 set_target_properties(fmt PROPERTIES CXX_EXTENSIONS OFF)
 
+# Install {fmt}, because it has build artifacts
+packageProject(
+  NAME "fmt"
+  VERSION "7.0.3"
+  BINARY_DIR "${fmt_BINARY_DIR}"
+  INCLUDE_DIR "${fmt_SOURCE_DIR}/include"
+  INCLUDE_DESTINATION "include/fmt-7.0.3"
+)
+
 # gsl
 
 CPMAddPackage(
