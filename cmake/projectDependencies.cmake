@@ -10,20 +10,18 @@ CPMAddPackage(
   DOWNLOAD_ONLY YES
 )
 
-if(fmt_ADDED)
-  file(GLOB fmt_sources CONFIGURE_DEPENDS "${fmt_SOURCE_DIR}/src/*.cc")
-  add_library(fmt STATIC ${fmt_sources})
+fail_if_not_added(fmt)
 
-  target_include_directories(fmt SYSTEM PUBLIC "$<BUILD_INTERFACE:${fmt_SOURCE_DIR}/include>")
+file(GLOB fmt_sources CONFIGURE_DEPENDS "${fmt_SOURCE_DIR}/src/*.cc")
+add_library(fmt STATIC ${fmt_sources})
 
-  # {fmt} needs C++ 11 at least to compile and use as a library
-  target_compile_features(fmt PUBLIC cxx_std_11)
+target_include_directories(fmt SYSTEM PUBLIC "$<BUILD_INTERFACE:${fmt_SOURCE_DIR}/include>")
 
-  # Don't want {fmt} source files to compile with GNU extensions
-  set_target_properties(fmt PROPERTIES CXX_EXTENSIONS OFF)
-else()
-  message(FATAL_ERROR "Failed to add the fmt library")
-endif()
+# {fmt} needs C++ 11 at least to compile and use as a library
+target_compile_features(fmt PUBLIC cxx_std_11)
+
+# Don't want {fmt} source files to compile with GNU extensions
+set_target_properties(fmt PROPERTIES CXX_EXTENSIONS OFF)
 
 # gsl
 
@@ -35,13 +33,11 @@ CPMAddPackage(
   DOWNLOAD_ONLY YES
 )
 
-if(GSL_ADDED)
-  add_library(GSL INTERFACE)
+fail_if_not_added(GSL)
 
-  target_include_directories(GSL SYSTEM INTERFACE "$<BUILD_INTERFACE:${GSL_SOURCE_DIR}/include>")
+add_library(GSL INTERFACE)
 
-  # GSL uses C++ 14 by default in its CMakeLists file, so we propagate that requirement
-  target_compile_features(GSL INTERFACE cxx_std_14)
-else()
-  message(FATAL_ERROR "Failed to add the GSL library")
-endif()
+target_include_directories(GSL SYSTEM INTERFACE "$<BUILD_INTERFACE:${GSL_SOURCE_DIR}/include>")
+
+# GSL uses C++ 14 by default in its CMakeLists file, so we propagate that requirement
+target_compile_features(GSL INTERFACE cxx_std_14)

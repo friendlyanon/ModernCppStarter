@@ -18,3 +18,9 @@ if(NOT (EXISTS "${CPM_DOWNLOAD_LOCATION}"))
 endif()
 
 include("${CPM_DOWNLOAD_LOCATION}")
+
+function(fail_if_not_added TARGET)
+  if(NOT ${TARGET}_ADDED)
+    message(FATAL_ERROR "Failed to add library: ${TARGET}")
+  endif()
+endfunction()

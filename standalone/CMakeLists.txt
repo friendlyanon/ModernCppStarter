@@ -24,6 +24,8 @@ endif()
 
 include(../cmake/CPM.cmake)
 
+# cxxopts
+
 CPMAddPackage(
   NAME cxxopts
   GITHUB_REPOSITORY jarro2783/cxxopts
@@ -32,17 +34,17 @@ CPMAddPackage(
   DOWNLOAD_ONLY YES
 )
 
-if(cxxopts_ADDED)
-  add_library(cxxopts INTERFACE)
+fail_if_not_added(cxxopts)
 
-  target_include_directories(
-    cxxopts SYSTEM INTERFACE "$<BUILD_INTERFACE:${cxxopts_SOURCE_DIR}/include>"
-  )
+add_library(cxxopts INTERFACE)
 
-  target_compile_features(cxxopts INTERFACE cxx_std_11)
-else()
-  message(FATAL_ERROR "Failed to add the cxxopts library")
-endif()
+target_include_directories(
+  cxxopts SYSTEM INTERFACE "$<BUILD_INTERFACE:${cxxopts_SOURCE_DIR}/include>"
+)
+
+target_compile_features(cxxopts INTERFACE cxx_std_11)
+
+# root project
 
 CPMAddPackage(
   NAME Greeter
