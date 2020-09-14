@@ -52,15 +52,15 @@ target_compile_features("${PROJECT_NAME}" PUBLIC cxx_std_17)
 target_link_libraries("${PROJECT_NAME}" PUBLIC fmt)
 
 # By default we want to use SYSTEM, so dependant projects don't get warnings from these includes
-if(NOT GREETER_INTERNAL_INCLUDE_TYPE)
-  set(GREETER_INTERNAL_INCLUDE_TYPE
+if(NOT ${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE)
+  set(${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE
       "SYSTEM;PUBLIC"
       CACHE INTERNAL ""
   )
 endif()
 
 target_include_directories(
-  "${PROJECT_NAME}" ${GREETER_INTERNAL_INCLUDE_TYPE}
+  "${PROJECT_NAME}" ${${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE}
   "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>"
 )
