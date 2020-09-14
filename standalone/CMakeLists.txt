@@ -49,7 +49,7 @@ target_compile_features(cxxopts INTERFACE cxx_std_11)
 CPMAddPackage(
   NAME Greeter
   SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/.."
-  OPTIONS "Greeter_INTERNAL_INCLUDE_TYPE PUBLIC"
+  OPTIONS "Greeter_INCLUDE_WITHOUT_SYSTEM YES"
 )
 
 target_compile_options(Greeter PRIVATE ${PROJECT_WARNINGS})

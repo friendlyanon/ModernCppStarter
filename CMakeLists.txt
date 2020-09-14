@@ -51,12 +51,12 @@ target_compile_features("${PROJECT_NAME}" PUBLIC cxx_std_17)
 
 target_link_libraries("${PROJECT_NAME}" PUBLIC fmt)
 
+set(${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE "PUBLIC")
+
 # By default we want to use SYSTEM, so dependant projects don't get warnings from these includes
-if(NOT ${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE)
-  set(${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE
-      "SYSTEM;PUBLIC"
-      CACHE INTERNAL ""
-  )
+if(NOT ${PROJECT_NAME}_INCLUDE_WITHOUT_SYSTEM)
+  # SYSTEM needs to be prepended, because everything after it will be affected
+  list(PREPEND ${PROJECT_NAME}_INTERNAL_INCLUDE_TYPE "SYSTEM")
 endif()
 
 target_include_directories(
