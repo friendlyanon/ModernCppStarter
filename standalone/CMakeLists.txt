@@ -52,6 +52,8 @@ CPMAddPackage(
   OPTIONS "Greeter_INTERNAL_INCLUDE_TYPE PUBLIC"
 )
 
+target_compile_options(Greeter PRIVATE ${PROJECT_WARNINGS})
+
 # ---- Create standalone executable ----
 
 file(GLOB sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
