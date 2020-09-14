@@ -11,9 +11,9 @@ configure() {
   fi
 
   cmake -Htest -B $TARGET -GNinja \
-    -DCMAKE_BUILD_TYPE=Debug \
-    -DUSE_CCACHE=ON \
-    -DCPM_SOURCE_CACHE="$(pwd)/.cpm-cache"
+    -DCMAKE_BUILD_TYPE:STRING=Debug \
+    -DUSE_CCACHE:BOOL=ON \
+    -DCPM_SOURCE_CACHE:PATH="$(pwd)/.cpm-cache"
 }
 
 build() {

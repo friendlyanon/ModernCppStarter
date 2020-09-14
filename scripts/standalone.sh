@@ -11,8 +11,8 @@ configure() {
   fi
 
   cmake -Hstandalone -B $TARGET -GNinja \
-    -DUSE_CCACHE=ON \
-    -DCPM_SOURCE_CACHE="$(pwd)/.cpm-cache"
+    -DUSE_CCACHE:BOOL=ON \
+    -DCPM_SOURCE_CACHE:PATH="$(pwd)/.cpm-cache"
 }
 
 build() {

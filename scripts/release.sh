@@ -11,10 +11,10 @@ configure() {
   fi
 
   cmake -Hstandalone -B $TARGET -GNinja \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DUSE_CCACHE=ON \
-    -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
-    -DCPM_SOURCE_CACHE="$(pwd)/.cpm-cache"
+    -DCMAKE_BUILD_TYPE:STRING=Release \
+    -DUSE_CCACHE:BOOL=ON \
+    -DCMAKE_INTERPROCEDURAL_OPTIMIZATION:BOOL=ON \
+    -DCPM_SOURCE_CACHE:PATH="$(pwd)/.cpm-cache"
 }
 
 build() {

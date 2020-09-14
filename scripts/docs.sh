@@ -11,7 +11,7 @@ configure() {
   fi
 
   cmake -Hdocumentation -B $TARGET \
-    -DCPM_SOURCE_CACHE="$(pwd)/.cpm-cache"
+    -DCPM_SOURCE_CACHE:PATH="$(pwd)/.cpm-cache"
 }
 
 build() {
