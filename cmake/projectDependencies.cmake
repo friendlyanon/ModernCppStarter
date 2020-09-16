@@ -48,5 +48,6 @@ add_library(GSL INTERFACE)
 
 target_include_directories(GSL SYSTEM INTERFACE "$<BUILD_INTERFACE:${GSL_SOURCE_DIR}/include>")
 
-# GSL uses C++ 14 by default in its CMakeLists file, so we propagate that requirement
-target_compile_features(GSL INTERFACE cxx_std_14)
+target_compile_features(GSL INTERFACE cxx_std_17)
+
+target_compile_definitions(GSL INTERFACE GSL_USE_STD_BYTE=1)
