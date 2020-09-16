@@ -50,4 +50,7 @@ target_include_directories(GSL SYSTEM INTERFACE "$<BUILD_INTERFACE:${GSL_SOURCE_
 
 target_compile_features(GSL INTERFACE cxx_std_17)
 
-target_compile_definitions(GSL INTERFACE GSL_USE_STD_BYTE=1)
+target_compile_definitions(
+  GSL INTERFACE GSL_USE_STD_BYTE=1 $<$<CXX_COMPILER_ID:MSVC>:_SCL_SECURE_NO_WARNINGS
+                _SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING>
+)
