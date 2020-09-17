@@ -15,10 +15,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v1
-    
+
     - name: build and install library
       run: |
         cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release
